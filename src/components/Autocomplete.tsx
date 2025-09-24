@@ -1,9 +1,10 @@
-import React, { useCallback, useMemo, useState } from 'react';
+import React, { useCallback, useMemo, useState, useEffect } from 'react';
 import debounce from 'lodash.debounce';
+import { Person } from '../types/Person';
 
 type Props = {
   people: Person[];
-  onSelected?: (person: Person) => void;
+  onSelected?: (person: Person | null) => void;
   delay?: number;
 };
 
@@ -26,7 +27,9 @@ export const Autocomplete: React.FC<Props> = ({
 
   const handleQueryChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setQuery(event.target.value);
-    applyQuery(event.target.value);
+    if (event.target.value.trim() !== '' && event.target.value.length < 0) {
+      applyQuery(event.target.value);
+    }
   };
 
   const filteredNames = useMemo(() => {

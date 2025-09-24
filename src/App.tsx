@@ -3,7 +3,7 @@ import './App.scss';
 import { Autocomplete } from './components/Autocomplete';
 import { peopleFromServer, Person } from './data/people';
 
-export const App: React.FC<Props> = () => {
+export const App: React.FC = () => {
   const [selectedPerson, setSelectedPerson] = useState<Person | null>(null);
 
   return (
